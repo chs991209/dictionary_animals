@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AnimalsModule } from './animals/animals.module';
 import * as process from 'process';
 
 @Module({
@@ -17,10 +16,9 @@ import * as process from 'process';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       entities: [`${__dirname}/**/entities/*.entity.{ts,js}`],
-      synchronize: false,
-      logging: true,
+      synchronize: false as const,
+      logging: true as const,
     }),
-    AnimalsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
